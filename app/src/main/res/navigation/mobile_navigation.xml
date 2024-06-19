@@ -22,10 +22,16 @@
         android:name="com.example.healthyfind.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
     <fragment
         android:id="@+id/navigation_welcome"
         android:name="com.example.healthyfind.welcome.WelcomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_welcome" />
 
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="com.example.healthyfind.ui.maps.MapsFragment"
+        android:label="@string/title_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
