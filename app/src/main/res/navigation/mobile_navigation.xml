@@ -34,4 +34,11 @@
         android:name="com.example.healthyfind.ui.maps.MapsFragment"
         android:label="@string/title_maps"
         tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/navigation_food_pantry"
+        android:name="com.example.healthyfind.ui.foodpantry.FoodPantryFragment"
+        android:label="@string/title_food_pantry"
+        tools:layout="@layout/fragment_food_pantry" />
+
 </navigation>

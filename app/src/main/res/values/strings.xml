@@ -6,4 +6,15 @@
     <string name="title_settings">Settings</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_maps">Maps</string>
+    <string name="title_food_pantry">Food Pantry</string>
+    <string name="paragraph_vcentials_main">You can make an appointment and place an online order
+        for convenient pick up or visit during operating hours to make your own selections.</string>
+    <string name="paragraph_vcentials_getting_started">
+        <i> Visit https://valenciacollege.edu/resources/grants/vcentials.php for more info</i>
+       </string>
+    <string name="subheader_vcentials">A resource for food and services.</string>
+    <string name="header_vcentials">VCentials</string>
+    <string name="website">website</string>
+    <string name="description_image_vcentials">Valencia College graphic with fruits and vegetables.</string>
+    <string name="description_img_valenciacollege_logo">Valncia College logo</string>
 </resources>

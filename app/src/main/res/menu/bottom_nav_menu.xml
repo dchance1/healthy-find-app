@@ -12,6 +12,11 @@
         android:title="@string/title_recipes" />
 
     <item
+        android:id="@+id/navigation_food_pantry"
+        android:icon="@drawable/ic_food_pantry_black_24dp"
+        android:title="@string/title_food_pantry" />
+
+    <item
         android:id="@+id/navigation_maps"
         android:icon="@drawable/ic_map_black_24dp"
         android:title="@string/title_maps" />
