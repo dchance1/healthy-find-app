@@ -2,7 +2,6 @@
     <string name="app_name">Healthy Find</string>
     <string name="title_home">Home</string>
     <string name="title_recipes">Recipes</string>
-    <!-- <string name="title_notifications">Notifications</string> -->
     <string name="title_settings">Settings</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_maps">Maps</string>
@@ -17,4 +16,11 @@
     <string name="website">website</string>
     <string name="description_image_vcentials">Valencia College graphic with fruits and vegetables.</string>
     <string name="description_img_valenciacollege_logo">Valncia College logo</string>
+  
+  <!--
+    Put your API Key below EXAMPLE - <string name="my_map_api_key">YOUR KEY HERE</string>
+    DO NOT LEAVE YOUR KEY IN WHEN COMMITTING TO VCS
+    -->
+    <string name="my_map_api_key"></string>
+
 </resources>
