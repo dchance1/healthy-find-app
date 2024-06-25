@@ -16,11 +16,71 @@
     <string name="website">website</string>
     <string name="description_image_vcentials">Valencia College graphic with fruits and vegetables.</string>
     <string name="description_img_valenciacollege_logo">Valncia College logo</string>
-  
-  <!--
-    Put your API Key below EXAMPLE - <string name="my_map_api_key">YOUR KEY HERE</string>
-    DO NOT LEAVE YOUR KEY IN WHEN COMMITTING TO VCS
-    -->
+
+    <!--
+      Put your API Key below EXAMPLE - <string name="my_map_api_key">YOUR KEY HERE</string>
+      DO NOT LEAVE YOUR KEY IN WHEN COMMITTING TO VCS
+      -->
     <string name="my_map_api_key"></string>
+
+    <string-array name="recipe_full_txt">
+        <item>This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At varius vel pharetra vel turpis.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus urna. Facilisi cras fermentum odio eu. Massa tincidunt dui ut ornare lectus sit amet. Netus et malesuada fames ac turpis egestas maecenas.</item>
+        <item>Recipe 4</item>
+        <item>Recipe 5</item>
+        <item>Recipe 6</item>
+        <item>Recipe 7</item>
+        <item>Recipe 8</item>
+        <item>Recipe 9</item>
+        <item>Recipe 10</item>
+        <item>Recipe 11</item>
+        <item>Recipe 12</item>
+    </string-array>
+
+    <string-array name="recipe_three_letter_txt">
+        <item>Rcp 1</item>
+        <item>Rcp 2</item>
+        <item>Rcp 3</item>
+        <item>Rcp 4</item>
+        <item>Rcp 5</item>
+        <item>Rcp 6</item>
+        <item>Rcp 7</item>
+        <item>Rcp 8</item>
+        <item>Rcp 9</item>
+        <item>Rcp 10</item>
+        <item>Rcp 11</item>
+        <item>Rcp 12</item>
+    </string-array>
+
+    <string-array name="recipe_one_letter_txt">
+        <item>BBQ Chicken</item>
+        <item>Fried Chicken</item>
+        <item>Oven Backed Chicken</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="recipe_image_url">
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://www.foodandwine.com/thmb/NXUBQ0yUtxxf_jbUlhCMLXW9QD4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-recipes-crispy-chicken-wings-hero-02-6d627c282d3f4749a176e0ec34d2d6d7.jpg</item>
+        <item>https://www.recipetineats.com/tachyon/2018/03/Oven-Baked-Chicken-Breast_8-1.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+        <item>https://pinchofyum.com/wp-content/uploads/Gochujang-Burgers-9-1227x1536.jpg</item>
+    </string-array>
 
 </resources>
