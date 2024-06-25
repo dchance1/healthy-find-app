@@ -24,9 +24,9 @@ public class RecipesFragment extends Fragment {
         binding = FragmentRecipesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
+        //final TextView textView = binding.textDashboard;
 
-        recipesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //recipesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
