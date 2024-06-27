@@ -21,7 +21,7 @@
       Put your API Key below EXAMPLE - <string name="my_map_api_key">YOUR KEY HERE</string>
       DO NOT LEAVE YOUR KEY IN WHEN COMMITTING TO VCS
       -->
-    <string name="AIzaSyD1LMxFlwCfj1Sogcz6ozEeC0kAGZUIBvQ"></string>
+    <string name="api key here"></string>
 
     <string-array name="recipe_full_txt">
         <item>This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.This BBQ chicken breast recipe is so easy to make on the grill or in the oven, and it yields tender, juicy chicken breasts every time.</item>
