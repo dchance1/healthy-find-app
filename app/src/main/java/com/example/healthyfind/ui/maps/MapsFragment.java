@@ -38,19 +38,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         binding = FragmentMapsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        mapSearchView = mapSearchView.findViewById(R.id.mapSearch);
+        //mapSearchView = mapSearchView.findViewById(R.id.mapSearch);
+        mapSearchView = binding.mapSearch;
 
         //Getting the Map fragment by id
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
         //final TextView textView = binding.textMaps;
         //mapsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-
-
-
-        //setting the text listener here, this is where I want to substitute for an auto-search feature.
+      //setting the text listener here, this is where I want to substitute for an auto-search feature.
         mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
             @Override
             public boolean onQueryTextSubmit(String s) {
 
@@ -59,7 +57,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 List<Address> addressList = null;
                 if(location != null) {
                     //issues with this line
-                    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                    Geocoder geocoder = new Geocoder(root.getContext(), Locale.getDefault());
 
                     try{
                         addressList =geocoder.getFromLocationName(location, 1);
@@ -83,6 +81,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         });
         mapFragment.getMapAsync(this);
 
+        return root;
     }
 
     @Override
