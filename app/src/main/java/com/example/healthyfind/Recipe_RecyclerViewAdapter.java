@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,7 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
 
+
         CardView cardView = (CardView) view.findViewById(R.id.cardView1);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,18 +83,23 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
         String recipeDescription = recipeModels.get(position).getRecipeName();
         int len = recipeDescription.length();
         String shortDescription = recipeDescription;
-        if (len > 100) {
-            len = 105;
+        if (len > 20) {
+            len = 25;
             recipeDescription = recipeDescription.substring(0, len) + ".....";
         }
+
 
         holder.textViewName.setText(recipeDescription);
         holder.textViewSmall.setText(recipeModels.get(position).getRecipeSmall());
         String info = "Some information related to the recipe can go here. ";
         holder.textViewAbbr.setText(info);
+
+        //holder.imageView.setImageResource(R.drawable.baseline_10k_24);
         // Will use the below code to load image url's
+
         // need to add Drawable as a resource instead of int
         Glide.with(this.context).load(recipeModels.get(position).getImageUrl()).into(holder.imageView);
+        //Glide.with(holder.linearLayout.getContext()).load(recipeModels.get(position)).into(holder.imageView);
     }
 
     @Override
@@ -110,6 +117,7 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
         TextView textViewAbbr;
         TextView textViewSmall;
         CardView cardView;
+        LinearLayout linearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,6 +126,8 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
             textViewAbbr = itemView.findViewById(R.id.textView2);
             textViewSmall = itemView.findViewById(R.id.textView3);
             cardView = itemView.findViewById(R.id.cardView1);
+            linearLayout = itemView.findViewById(R.id.linearLay);
+
         }
     }
 }
