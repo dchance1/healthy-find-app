@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipes.RecipesFragment">
+    tools:context=".ui.recipes.RecipesFragment"
+    android:paddingBottom="?attr/actionBarSize"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"
+
         android:layout_marginTop="0dp"
         android:layout_marginBottom="60dp"
         android:padding="0dp"
