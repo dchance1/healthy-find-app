@@ -6,62 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
     android:backgroundTint="@color/white_smoke"
-    >
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:id="@+id/linearLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F4F2EF"
+        android:orientation="vertical">
 
-        android:orientation="vertical"
-
-        android:background="#F4F2EF">
-
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/splash_screen_healthyfoods" />
-
-
-
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_screen_healthyfoods" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginTop="8dp"
+            android:layout_weight="1"
             android:paddingHorizontal="5dp"
             android:text="This BBQ chicken breast recipe is so easy to ma"
-            android:textStyle="italic"
+            android:textColor="@color/black"
             android:textSize="14sp"
-            android:textColor="@color/black" />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
+            android:layout_weight="1"
             android:padding="5dp"
-android:layout_weight="1"
             android:text="Any useful text can go here. This is what I think."
-            android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
-            android:background="#E68C3A"
             android:layout_weight="1"
+            android:background="#E68C3A"
             android:padding="8dp"
             android:text="BBQ Chicken"
             android:textAlignment="center"
