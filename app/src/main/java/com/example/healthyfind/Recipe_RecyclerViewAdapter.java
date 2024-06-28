@@ -52,7 +52,7 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
         View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
 
 
-        CardView cardView = (CardView) view.findViewById(R.id.cardView1);
+        CardView cardView = (CardView) view.findViewById(R.id.cardView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         //if description too long this code will shorten to keep UI consistent.
-        String recipeDescription = recipeModels.get(position).getRecipeName();
+        String recipeDescription = recipeModels.get(position).getRecipeInfo1();
         int len = recipeDescription.length();
         String shortDescription = recipeDescription;
         if (len > 20) {
@@ -90,12 +90,11 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
         }
 
         //Giving values to the row views as they appear on screen and ensures
-        holder.textViewName.setText(recipeDescription);
-        holder.textViewSmall.setText(recipeModels.get(position).getRecipeSmall());
         String info = "Some information related to the recipe can go here. ";
-        holder.textViewAbbr.setText(info);
-
-        // Will use the below code to load image url's
+        holder.textViewText1.setText(recipeDescription);
+        holder.textViewText2.setText(info);
+        holder.textViewName.setText(recipeModels.get(position).getRecipeName());
+        // Will use the below code to load image url's dynamically
         Glide.with(this.context).load(recipeModels.get(position).getImageUrl()).into(holder.imageView);
     }
 
@@ -110,19 +109,19 @@ public class Recipe_RecyclerViewAdapter extends RecyclerView.Adapter<Recipe_Recy
 
         //Getting views from recycler view file
         ImageView imageView;
+        TextView textViewText1;
+        TextView textViewText2;
         TextView textViewName;
-        TextView textViewAbbr;
-        TextView textViewSmall;
         CardView cardView;
         LinearLayout linearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            textViewName = itemView.findViewById(R.id.textView1);
-            textViewAbbr = itemView.findViewById(R.id.textView2);
-            textViewSmall = itemView.findViewById(R.id.textView3);
-            cardView = itemView.findViewById(R.id.cardView1);
+            textViewText1 = itemView.findViewById(R.id.textView1);
+            textViewText2 = itemView.findViewById(R.id.textView2);
+            textViewName = itemView.findViewById(R.id.textViewName);
+            cardView = itemView.findViewById(R.id.cardView);
             linearLayout = itemView.findViewById(R.id.linearLay);
 
         }

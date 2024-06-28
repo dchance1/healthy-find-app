@@ -1,19 +1,14 @@
 package com.example.healthyfind.ui.recipes;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthyfind.R;
@@ -21,8 +16,6 @@ import com.example.healthyfind.RecipeModel;
 import com.example.healthyfind.Recipe_RecyclerViewAdapter;
 import com.example.healthyfind.databinding.FragmentRecipesBinding;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class RecipesFragment extends Fragment {
@@ -53,14 +46,14 @@ public class RecipesFragment extends Fragment {
     private void setUpRecipeModels() {
 
         //Getting resources from strings.xml
-        String[] recipeNames = getResources().getStringArray(R.array.recipe_full_txt);
-        String[] recipeAbbrs = getResources().getStringArray(R.array.recipe_three_letter_txt);
-        String[] recipesmall = getResources().getStringArray(R.array.recipe_one_letter_txt);
+        String[] recipeInfo1 = getResources().getStringArray(R.array.recipe_info_1);
+        String[] recipeInfo2 = getResources().getStringArray(R.array.recipe_info_2);
+        String[] recipeName = getResources().getStringArray(R.array.recipe_name);
         String[] recipeImages = getResources().getStringArray(R.array.recipe_image_url);
 
         //Adding resources to the models to array
-        for (int i = 0; i < recipeNames.length; i++) {
-            recipeModels.add(new RecipeModel(recipeNames[i], recipeAbbrs[i], recipesmall[i],
+        for (int i = 0; i < recipeInfo1.length; i++) {
+            recipeModels.add(new RecipeModel(recipeName[i], recipeInfo1[i], recipeInfo2[i],
                     recipeImages[i]));
         }
     }
