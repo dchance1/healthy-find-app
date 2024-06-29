@@ -29,7 +29,7 @@ public class FoodPantryFragment extends Fragment {
         final ImageView imageView = binding.imageView;
         final TextView textView = binding.headerTxt;
 
-        Button webButton = binding.webBTN;
+        Button webButton = binding.getRecipesBTN;
         webButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,15 +1,20 @@
 package com.example.healthyfind.ui.home;
 
+import static androidx.navigation.Navigation.findNavController;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import androidx.navigation.Navigation;
+
+import com.example.healthyfind.R;
 import com.example.healthyfind.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -24,8 +29,15 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        Button btn = binding.getRecipesBTN;
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("8989");
+                Navigation.findNavController(v).navigate(R.id.navigation_recipes);
+                findNavController(v).clearBackStack(R.id.navigation_recipes);
+            }
+        });
         return root;
     }
 
