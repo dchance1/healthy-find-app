@@ -32,7 +32,7 @@
         android:paddingVertical="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/orange"
-        android:text="Find..."
+        android:text="Find"
         android:textColor="#FFFFFFFF"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/searchInput"

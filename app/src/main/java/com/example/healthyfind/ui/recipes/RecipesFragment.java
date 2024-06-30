@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +55,7 @@ public class RecipesFragment extends Fragment {
         mealList = new ArrayList<>();
 
         mealAdapter = new MealAdapter(mealList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getRootView().getContext(), 2));
         recyclerView.setAdapter(mealAdapter);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -146,8 +147,8 @@ public class RecipesFragment extends Fragment {
             private final Context context;
             private final ImageView mealImageView;
             private final TextView categoryTextView;
-            private final TextView tagsTextView;
-            private final Button mealNameButton;
+            //private final TextView tagsTextView;
+            private final TextView mealNameButton;
             private final TextView areaTextView;
 
             public MealViewHolder(@NonNull View itemView) {
@@ -156,7 +157,7 @@ public class RecipesFragment extends Fragment {
                 context = itemView.getContext();
                 mealImageView = itemView.findViewById(R.id.mealImageView);
                 categoryTextView = itemView.findViewById(R.id.categoryTextView);
-                tagsTextView = itemView.findViewById(R.id.tagsTextView);
+                //tagsTextView = itemView.findViewById(R.id.tagsTextView);
                 mealNameButton = itemView.findViewById(R.id.mealNameButton);
                 areaTextView = itemView.findViewById(R.id.areaTextView);
             }
@@ -166,11 +167,13 @@ public class RecipesFragment extends Fragment {
                 Picasso.get().load(meal.getMealImageURL()).into(mealImageView);
                 categoryTextView.setText("Category: " + meal.getCategory());
 
-                if (mealTags.equalsIgnoreCase("null")) {
-                    tagsTextView.setText("Tags: No Tags Available");
-                } else {
-                    tagsTextView.setText("Tags: " + mealTags);
-                }
+
+                //Commenting out for now, tags generally don't show up
+//                if (mealTags.equalsIgnoreCase("null")) {
+//                    tagsTextView.setText("Tags: No Tags Available");
+//                } else {
+//                    tagsTextView.setText("Tags: " + mealTags);
+//                }
 
                 areaTextView.setText("Cuisine: " + meal.getMealArea());
                 mealNameButton.setText(meal.getMealName());
