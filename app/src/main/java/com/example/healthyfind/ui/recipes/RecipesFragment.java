@@ -120,7 +120,6 @@ public class RecipesFragment extends Fragment {
         private List<Meal> mealList;
 
         public MealAdapter(List<Meal> mealList) {
-
             this.mealList = mealList;
         }
 
@@ -149,7 +148,6 @@ public class RecipesFragment extends Fragment {
             private final TextView categoryTextView;
             private final TextView tagsTextView;
             private final Button mealNameButton;
-
             private final TextView areaTextView;
 
             public MealViewHolder(@NonNull View itemView) {
@@ -164,12 +162,9 @@ public class RecipesFragment extends Fragment {
             }
 
             public void bind(Meal meal) {
-
                 String mealTags = meal.getMealTags();
-
                 Picasso.get().load(meal.getMealImageURL()).into(mealImageView);
                 categoryTextView.setText("Category: " + meal.getCategory());
-
 
                 if (mealTags.equalsIgnoreCase("null")) {
                     tagsTextView.setText("Tags: No Tags Available");
@@ -177,24 +172,31 @@ public class RecipesFragment extends Fragment {
                     tagsTextView.setText("Tags: " + mealTags);
                 }
 
-                areaTextView.setText("Cuisine: " +meal.getMealArea());
+                areaTextView.setText("Cuisine: " + meal.getMealArea());
                 mealNameButton.setText(meal.getMealName());
 
-                 itemView.setOnClickListener(new View.OnClickListener(){
-                     @Override
-                     public void onClick(View view) {
-                         Bundle bundle = new Bundle();
-                         bundle.putSerializable("meal", meal);
-                         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
-                         recipeDetailFragment.setArguments(bundle);
+                //take itemView and add Click Listener to show recipe details fragment
+                itemView.setOnClickListener(view -> {
+                    if (context instanceof MainActivity) {
+                        MainActivity mainActivity = (MainActivity) context;
 
-                         ((MainActivity) context).getSupportFragmentManager()
-                                 .beginTransaction()
-                                 .replace(R.id.container, recipeDetailFragment)
-                                 .addToBackStack(null)
-                                 .commit();
-                     }
-                 });
+                        //check the state of the activity. Was getting an error about the state when
+                        //showing details. This is to help stop a state if already running
+                        if (!mainActivity.isStateSaved()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("meal", meal);
+                            RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                            recipeDetailFragment.setArguments(bundle);
+
+                            //May need to revisit this to have a better way of showing the details.
+                            mainActivity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.recipes, recipeDetailFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    }
+                });
             }
         }
     }
@@ -205,42 +207,30 @@ public class RecipesFragment extends Fragment {
         private final String instructions;
         private final String mealImageURL;
         private final String mealTags;
-
         private final String mealArea;
 
         public Meal(String mealName, String category, String instructions, String mealImageURL, String mealTags, String mealArea) {
-
             this.mealName = mealName;
-
             this.category = category;
-
             this.instructions = instructions;
-
             this.mealImageURL = mealImageURL;
-
             this.mealTags = mealTags;
-
             this.mealArea = mealArea;
-
         }
 
         public String getMealName() {
-
             return mealName;
         }
 
         public String getCategory() {
-
             return category;
         }
 
         public String getInstructions() {
-
             return instructions;
         }
 
         public String getMealImageURL() {
-
             return mealImageURL;
         }
 
