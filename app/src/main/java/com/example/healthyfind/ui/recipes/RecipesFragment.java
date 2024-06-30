@@ -175,20 +175,37 @@ public class RecipesFragment extends Fragment {
                 areaTextView.setText("Cuisine: " + meal.getMealArea());
                 mealNameButton.setText(meal.getMealName());
 
+                //TODO - May need to rework this click listener to display the recipe details
                 //take itemView and add Click Listener to show recipe details fragment
                 itemView.setOnClickListener(view -> {
                     if (context instanceof MainActivity) {
                         MainActivity mainActivity = (MainActivity) context;
 
-                        //check the state of the activity. Was getting an error about the state when
-                        //showing details. This is to help stop a state if already running
+                        /*
+                        check the state of the activity. Was getting an error about the state when
+                        showing details. This is to help stop a state if already running
+                        Have fragment replacing the recipes layout because when I try to
+                        display the recipe details, an state issue occurs.
+                         */
                         if (!mainActivity.isStateSaved()) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("meal", meal);
                             RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
                             recipeDetailFragment.setArguments(bundle);
 
-                            //May need to revisit this to have a better way of showing the details.
+                            //FIXME
+                            // - "Find" search button shows in the recipe details
+                            /*
+                            recipe details fragment replaces the recipes fragment. I went with this
+                            because I had issues displaying the recipe details. The error showed
+                            something about a "state" activity already active. Also, when I try to
+                            click back on the Recipes page, all the recipes go away and would need
+                            to search again.
+
+                            I currently have the recipes details fragment replacing
+                            the "recipes" fragment and added a "close details" button. This allows
+                            for the recipes to stay without needing to do another search.
+                            */
                             mainActivity.getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.recipes, recipeDetailFragment)
