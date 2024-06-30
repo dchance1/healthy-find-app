@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.healthyfind.MainActivity;
 import com.example.healthyfind.R;
 import com.squareup.picasso.Picasso;
 
@@ -166,7 +167,6 @@ public class RecipesFragment extends Fragment {
 
                 String mealTags = meal.getMealTags();
 
-
                 Picasso.get().load(meal.getMealImageURL()).into(mealImageView);
                 categoryTextView.setText("Category: " + meal.getCategory());
 
@@ -178,8 +178,23 @@ public class RecipesFragment extends Fragment {
                 }
 
                 areaTextView.setText("Cuisine: " +meal.getMealArea());
-
                 mealNameButton.setText(meal.getMealName());
+
+                 itemView.setOnClickListener(new View.OnClickListener(){
+                     @Override
+                     public void onClick(View view) {
+                         Bundle bundle = new Bundle();
+                         bundle.putSerializable("meal", meal);
+                         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                         recipeDetailFragment.setArguments(bundle);
+
+                         ((MainActivity) context).getSupportFragmentManager()
+                                 .beginTransaction()
+                                 .replace(R.id.container, recipeDetailFragment)
+                                 .addToBackStack(null)
+                                 .commit();
+                     }
+                 });
             }
         }
     }
