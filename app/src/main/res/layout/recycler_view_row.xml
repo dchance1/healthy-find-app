@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,76 +10,56 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/linearLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:background="#F4F2EF"
+        android:orientation="vertical">
 
-
-        android:background="@color/white_smoke"
-        >
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/mealImageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_screen_healthyfoods" />
 
+        <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="5dp"
+            android:text="This BBQ chicken breast recipe is so easy to ma"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/mealImageView"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="8dp" />
+        <TextView
+            android:id="@+id/areaTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Any useful text can go here. This is what I think."
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/categoryTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black" />
-
-                <TextView
-                    android:id="@+id/tagsTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black" />
-
-
-                <TextView
-                    android:id="@+id/areaTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
+        <TextView
             android:id="@+id/mealNameButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
             android:background="#E68C3A"
-            android:radius="25dp"
-            android:textColor="#FFFFFFFF"
+            android:padding="8dp"
+            android:text="BBQ Chicken"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-
-
 </androidx.cardview.widget.CardView>
