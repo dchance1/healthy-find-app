@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.healthyfind.MainActivity;
 import com.example.healthyfind.R;
 import com.squareup.picasso.Picasso;
 
@@ -119,7 +120,6 @@ public class RecipesFragment extends Fragment {
         private List<Meal> mealList;
 
         public MealAdapter(List<Meal> mealList) {
-
             this.mealList = mealList;
         }
 
@@ -148,7 +148,6 @@ public class RecipesFragment extends Fragment {
             private final TextView categoryTextView;
             private final TextView tagsTextView;
             private final Button mealNameButton;
-
             private final TextView areaTextView;
 
             public MealViewHolder(@NonNull View itemView) {
@@ -163,13 +162,9 @@ public class RecipesFragment extends Fragment {
             }
 
             public void bind(Meal meal) {
-
                 String mealTags = meal.getMealTags();
-
-
                 Picasso.get().load(meal.getMealImageURL()).into(mealImageView);
                 categoryTextView.setText("Category: " + meal.getCategory());
-
 
                 if (mealTags.equalsIgnoreCase("null")) {
                     tagsTextView.setText("Tags: No Tags Available");
@@ -177,9 +172,48 @@ public class RecipesFragment extends Fragment {
                     tagsTextView.setText("Tags: " + mealTags);
                 }
 
-                areaTextView.setText("Cuisine: " +meal.getMealArea());
-
+                areaTextView.setText("Cuisine: " + meal.getMealArea());
                 mealNameButton.setText(meal.getMealName());
+
+                //TODO - May need to rework this click listener to display the recipe details
+                //take itemView and add Click Listener to show recipe details fragment
+                itemView.setOnClickListener(view -> {
+                    if (context instanceof MainActivity) {
+                        MainActivity mainActivity = (MainActivity) context;
+
+                        /*
+                        check the state of the activity. Was getting an error about the state when
+                        showing details. This is to help stop a state if already running
+                        Have fragment replacing the recipes layout because when I try to
+                        display the recipe details, an state issue occurs.
+                         */
+                        if (!mainActivity.isStateSaved()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("meal", meal);
+                            RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                            recipeDetailFragment.setArguments(bundle);
+
+                            //FIXME
+                            // - "Find" search button shows in the recipe details
+                            /*
+                            recipe details fragment replaces the recipes fragment. I went with this
+                            because I had issues displaying the recipe details. The error showed
+                            something about a "state" activity already active. Also, when I try to
+                            click back on the Recipes page, all the recipes go away and would need
+                            to search again.
+
+                            I currently have the recipes details fragment replacing
+                            the "recipes" fragment and added a "close details" button. This allows
+                            for the recipes to stay without needing to do another search.
+                            */
+                            mainActivity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.recipes, recipeDetailFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    }
+                });
             }
         }
     }
@@ -190,42 +224,30 @@ public class RecipesFragment extends Fragment {
         private final String instructions;
         private final String mealImageURL;
         private final String mealTags;
-
         private final String mealArea;
 
         public Meal(String mealName, String category, String instructions, String mealImageURL, String mealTags, String mealArea) {
-
             this.mealName = mealName;
-
             this.category = category;
-
             this.instructions = instructions;
-
             this.mealImageURL = mealImageURL;
-
             this.mealTags = mealTags;
-
             this.mealArea = mealArea;
-
         }
 
         public String getMealName() {
-
             return mealName;
         }
 
         public String getCategory() {
-
             return category;
         }
 
         public String getInstructions() {
-
             return instructions;
         }
 
         public String getMealImageURL() {
-
             return mealImageURL;
         }
 
