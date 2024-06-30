@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,7 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.healthyfind.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LifecycleObserver {
 
     private ActivityMainBinding binding;
 
@@ -44,4 +45,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    // Method to check if state is saved
+    public boolean isStateSaved() {
+        return getSupportFragmentManager().isStateSaved();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }
