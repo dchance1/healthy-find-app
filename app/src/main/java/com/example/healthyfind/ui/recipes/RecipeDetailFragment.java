@@ -29,16 +29,35 @@ public class RecipeDetailFragment extends Fragment {
         TextView recipeDescription = view.findViewById(R.id.recipe_description);
         TextView recipeIngredients = view.findViewById(R.id.recipe_ingredients);
         TextView recipeSteps = view.findViewById(R.id.recipe_steps);
+        TextView recipeTags = view.findViewById(R.id.recipe_tags);
         Button closeButton = view.findViewById(R.id.close_button);
+
 
         if (getArguments() != null) {
             RecipesFragment.Meal meal = (RecipesFragment.Meal) getArguments().getSerializable("meal");
+            String mealTags = meal.getMealTags();
             if (meal != null) {
                 Glide.with(this).load(meal.getMealImageURL()).into(recipeImage);
                 recipeName.setText(meal.getMealName());
-                recipeDescription.setText(meal.getCategory()); // or any other description you have
-                recipeIngredients.setText(meal.getMealTags()); // or actual ingredients list
-                recipeSteps.setText(meal.getInstructions());
+                recipeDescription.setText("Category: "+meal.getCategory()); // or any other description you have
+
+
+                if (mealTags.equalsIgnoreCase("null")) {
+                    recipeTags.setText("Tags: No Tags Available");
+                } else {
+                    recipeTags.setText("Tags: " + mealTags);
+                }
+
+                // Appending the ingredients
+                StringBuilder ingredientsText = new StringBuilder("Ingredients:\n" );
+
+                for(String singleIngredient: meal.getIngredients()){
+                    ingredientsText.append(singleIngredient).append("\n");
+                }
+                // and then displayed here
+                recipeIngredients.setText(ingredientsText.toString());
+
+                recipeSteps.setText("Steps:\n "+meal.getInstructions());
             }
         }
 

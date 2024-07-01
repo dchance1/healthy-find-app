@@ -93,8 +93,9 @@ public class RecipesFragment extends Fragment {
                                 String mealTags = mealObject.getString("strTags");
                                 String mealImageURL = mealObject.getString("strMealThumb");
                                 String mealArea = mealObject.getString("strArea") ;
+                                List<String> ingredients = Meal.extractApiIngredients(mealObject);
 
-                                Meal meal = new Meal(mealName, category, instructions, mealImageURL, mealTags, mealArea);
+                                Meal meal = new Meal(mealName, category, instructions, mealImageURL, mealTags, mealArea, ingredients);
                                 mealList.add(meal);
                             }
                             mealAdapter.notifyDataSetChanged();
@@ -228,14 +229,17 @@ public class RecipesFragment extends Fragment {
         private final String mealImageURL;
         private final String mealTags;
         private final String mealArea;
+        private final List<String> ingredients;
 
-        public Meal(String mealName, String category, String instructions, String mealImageURL, String mealTags, String mealArea) {
+        public Meal(String mealName, String category, String instructions, String mealImageURL, String mealTags, String mealArea, List<String> ingredients) {
             this.mealName = mealName;
             this.category = category;
             this.instructions = instructions;
             this.mealImageURL = mealImageURL;
             this.mealTags = mealTags;
             this.mealArea = mealArea;
+            this.ingredients = ingredients;
+
         }
 
         public String getMealName() {
@@ -261,5 +265,30 @@ public class RecipesFragment extends Fragment {
         public String getMealArea() {
             return mealArea;
         }
+        public List<String> getIngredients() {
+            return ingredients;
+        }
+
+        // API returns 20 ingredient objects for each meal. Some of these 20 objects dont even contain any values.
+        // this is a function to go through all 20 strIngredients and adds them to an ArrayList if they contain values.
+        public static List<String> extractApiIngredients(JSONObject mealObject) throws JSONException {
+            List<String> ingredients = new ArrayList<>();
+
+            for (int i = 0 ; i<20 ; i++){
+
+                String ingredient = mealObject.optString("strIngredient"+i);
+
+                // checking if any of the ingredient objects from the API is empty
+                // and adding only the ones that contain values to our meal Array.
+
+                if(!ingredient.equals("null") && !ingredient.equals("")){
+                    ingredients.add(ingredient) ;
+                }
+            }
+            return ingredients;
+        }
     }
+
+
+
 }
