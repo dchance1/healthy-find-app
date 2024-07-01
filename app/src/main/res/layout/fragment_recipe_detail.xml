@@ -52,17 +52,23 @@
                 android:paddingBottom="8dp" />
 
             <TextView
+                android:id="@+id/recipe_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp" />
+
+            <TextView
                 android:id="@+id/recipe_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="6dp" />
 
             <TextView
                 android:id="@+id/recipe_steps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="3dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
