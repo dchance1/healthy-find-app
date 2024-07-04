@@ -7,13 +7,26 @@
     android:paddingBottom="?attr/actionBarSize"
     tools:context=".ui.home.HomeFragment">
 
+    <Button
+        android:id="@+id/getRecipesBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:backgroundTint="@color/orange"
+        android:text="Get Recipes"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerChoice"
+        tools:layout_editor_absoluteX="20dp" />
+
+
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="50dp"
         android:inputType="number"
         android:text="$30.00"
         android:textAlignment="center"
@@ -23,32 +36,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-    <Button
-        android:id="@+id/getRecipesBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20sp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/orange"
-        android:text="Get Recipes"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6"
-        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/tvHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
-        android:text="what is your budget?"
+        android:text="@string/budget_header"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="32dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,55 +81,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinnerChoice"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/white_smoke"
-        android:text="No Preferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/white_smoke"
-        android:text="Vegetarian"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/white_smoke"
-        android:text="Veagan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
-
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/white_smoke"
-        android:text="Pescatarian"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="checkBox3,checkBox6,checkBox5,checkBox4" />
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

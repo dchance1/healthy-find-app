@@ -1,4 +1,14 @@
 <resources>
+    <string name="budget_header">What is your Budget?</string>
+    <string-array name="spinner_options">
+        <item>Vegan</item>
+        <item>Vegetarian</item>
+        <item>Pescatarian</item>
+        <item>Chicken</item>
+        <item>Beef</item>
+        <item>Pork</item>
+
+    </string-array>
     <string name="app_name">Healthy Find</string>
     <string name="title_home">Home</string>
     <string name="title_recipes">Recipes</string>

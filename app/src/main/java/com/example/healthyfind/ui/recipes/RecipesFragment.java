@@ -2,6 +2,7 @@ package com.example.healthyfind.ui.recipes;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.healthyfind.MainActivity;
 import com.example.healthyfind.R;
+import com.example.healthyfind.SharedViewModel;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -37,6 +41,8 @@ import android.widget.TextView;
 
 public class RecipesFragment extends Fragment {
 
+    private SharedViewModel viewModel;
+
     private EditText searchInput;
     private Button searchButton;
     private RecyclerView recyclerView;
@@ -46,11 +52,29 @@ public class RecipesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
+
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        String data = String.valueOf(viewModel.getData().getValue());
+
+
+
 
         searchInput = view.findViewById(R.id.searchInput);
         searchButton = view.findViewById(R.id.searchButton);
         recyclerView = view.findViewById(R.id.recyclerView);
+        if(!data.isEmpty()){
+            searchInput.setText(data);
+
+
+
+        }else {
+
+        }
+
 
         mealList = new ArrayList<>();
 
@@ -61,6 +85,9 @@ public class RecipesFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               ;
+
+
                 String searchQuery = searchInput.getText().toString().trim();
                 if (!searchQuery.isEmpty()) {
                     callTheApi(searchQuery);
@@ -69,6 +96,8 @@ public class RecipesFragment extends Fragment {
                 }
             }
         });
+        searchButton.performClick();
+
 
         return view;
     }
