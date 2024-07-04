@@ -1,13 +1,24 @@
 package com.example.healthyfind;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.example.healthyfind.ui.home.HomeFragment;
+import com.example.healthyfind.ui.recipes.RecipesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,10 +27,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.healthyfind.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements LifecycleObserver {
 
     private ActivityMainBinding binding;
-
+    private SharedViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +50,41 @@ public class MainActivity extends AppCompatActivity implements LifecycleObserver
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
         NavigationBarView barView = (NavigationBarView) binding.navView;
-        barView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+        Spinner spinner = findViewById(R.id.spinnerChoice);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.spinner_options,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-                System.out.println("Somethinghhh");
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String item = adapterView.getItemAtPosition(position).toString();Bundle result = new Bundle();
+               result.putString("spinner_data",item);
+                RecipesFragment fragment = new RecipesFragment();
+                fragment.setArguments(result);
+               // viewModel.setData(item);
+
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.navigation_recipes,new HomeFragment()).commit();
+                //getParentFragmentManager().setFragmentResult("data_pulled",result);
+
+            }
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+
+
     }
 
 
@@ -51,8 +93,11 @@ public class MainActivity extends AppCompatActivity implements LifecycleObserver
         return getSupportFragmentManager().isStateSaved();
     }
 
+
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 }
+
