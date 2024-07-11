@@ -41,11 +41,19 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.activity)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.core.splashscreen)
+    implementation(libs.play.services.maps)
+    implementation (libs.glide)
+    implementation (libs.volley)
+    implementation (libs.recyclerview)
+    implementation (libs.picasso)
+
+
 
 }

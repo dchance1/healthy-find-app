@@ -1,87 +1,53 @@
 package com.example.healthyfind.ui.maps;
-
-import android.location.Address;
-import android.location.Geocoder;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.healthyfind.MainActivity;
+import android.Manifest;
 import com.example.healthyfind.R;
 import com.example.healthyfind.databinding.FragmentMapsBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import com.google.android.gms.tasks.Task;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentMapsBinding binding;
-    private GoogleMap myMap;
-    private SearchView mapSearchView;
+    Location currentLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    private static final int REQUEST_CODE=101;
+
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MapsViewModel mapsViewModel = new ViewModelProvider(this).get(MapsViewModel.class);
 
         binding = FragmentMapsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //mapSearchView = mapSearchView.findViewById(R.id.mapSearch);
-        mapSearchView = binding.mapSearch;
+        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(binding.getRoot().getContext());
+        //fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
+
+        getCurrentLocation();
 
         //Getting the Map fragment by id
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-
-        //final TextView textView = binding.textMaps;
-        //mapsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-      //setting the text listener here, this is where I want to substitute for an auto-search feature.
-        mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-
-
-                String location = mapSearchView.getQuery().toString();
-                List<Address> addressList = null;
-                if(location != null) {
-                    //issues with this line
-                    Geocoder geocoder = new Geocoder(root.getContext(), Locale.getDefault());
-
-                    try{
-                        addressList =geocoder.getFromLocationName(location, 1);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //getting address below if we want multiple we can add a for loop here
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    //took hard code from onMapReady method and applied to search box
-                    myMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                    myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
         mapFragment.getMapAsync(this);
-
         return root;
+
+
     }
 
     @Override
@@ -93,16 +59,52 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         //Assigning google map to GoogleMap obj
-        myMap = googleMap;
 
         //Latitude and longitude
-        //LatLng orlando = new LatLng(28.538336, -81.379234);
+        LatLng orlando = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
         //creating marker and to map point sand setting a comfortable zoom
-        //myMap.addMarker(new MarkerOptions().position(orlando).title("Orlando"));
-        //myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(orlando, 12.0f));
+        googleMap.addMarker(new MarkerOptions().position(orlando).title("Current Location"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(orlando,12));
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
+    }
 
-        //None of the commented out code is needed due to the on query text submit method addition.
+    private void getCurrentLocation(){
 
+        if (ActivityCompat.checkSelfPermission(
+                this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}
+                    , REQUEST_CODE);
+            return;
+        }
+        Task<Location> task= fusedLocationProviderClient.getLastLocation();
+        task.addOnSuccessListener(location -> {
+            if(location !=null){
+                currentLocation= location;
+                Toast.makeText(requireContext().getApplicationContext(), (int) currentLocation.getLatitude(),Toast.LENGTH_LONG)
+                        .show();
+                SupportMapFragment supportMapFragment=(SupportMapFragment) getChildFragmentManager()
+                        .findFragmentById(R.id.map);
+                assert supportMapFragment!=null;
+                supportMapFragment.getMapAsync(MapsFragment.this);
+            }
+        });
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (REQUEST_CODE){
+            case REQUEST_CODE:
+                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                {
+                    getCurrentLocation();
+                }
+                break;
+        }
     }
 }
